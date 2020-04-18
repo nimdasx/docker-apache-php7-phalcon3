@@ -12,6 +12,6 @@ jalankan
 `docker run -d -p 80:80 -v d:/dev/php:/var/www/html --name terserah nimdasx/sf-phalcon-3` \
 matikan  
 `docker rm -f terserah`
-## kalau mau build sendiri
+## catatan pribadi / abaikan saja
 `docker build --tag nimdasx/sf-phalcon-3 .` \
 `docker push nimdasx/sf-phalcon-3`
