@@ -37,3 +37,10 @@ RUN docker-php-ext-install pdo_mysql
 RUN a2enmod rewrite
 ## aktifkan indexes
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/-Indexes/+Indexes/' /etc/apache2/conf-enabled/docker-php.conf
+
+#gd
+RUN apt install -y libpng-dev
+RUN docker-php-ext-install gd
+
+#clean up
+RUN apt-get clean
