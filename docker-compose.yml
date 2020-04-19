@@ -1,8 +1,9 @@
 version: "3.7"
 services:
     elang:
-        container_name: sf-phalcon-3
-        image: nimdasx/sf-phalcon-3
+        build : .
+        container_name: sf-phalcon-3-container
+        image: nimdasx/sf-phalcon-3:latest
         ports:
             - 80:80
         volumes:
