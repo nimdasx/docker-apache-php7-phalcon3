@@ -21,6 +21,7 @@ RUN apt-get -y update \
     gnupg \
     gnupg2 \
     gnupg1 \
+    git \
     && docker-php-ext-install zip pdo_mysql gd \
     && rm -rf /var/lib/apt/lists/*
 
