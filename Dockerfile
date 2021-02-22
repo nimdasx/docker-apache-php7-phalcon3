@@ -1,7 +1,7 @@
-FROM php:7.2-apache-buster
+FROM php:7.3-apache-buster
 
 LABEL maintainer="nimdasx@gmail.com"
-LABEL description="Apache PHP 7.2 Phalcon3"
+LABEL description="Apache PHP 7.3 Phalcon3"
 
 #set timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
@@ -16,13 +16,15 @@ RUN a2enmod rewrite \
 #dependensi
 RUN apt-get -y update \
     && apt-get install -y \
+    libzip-dev \
     unzip \
     libpng-dev \
+    libpq-dev \
     gnupg \
     gnupg2 \
     gnupg1 \
     git \
-    && docker-php-ext-install zip pdo_mysql gd \
+    && docker-php-ext-install zip pdo_mysql pdo_pgsql gd \
     && rm -rf /var/lib/apt/lists/*
 
 #install phalcon
