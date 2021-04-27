@@ -24,7 +24,7 @@ RUN apt-get -y update \
     gnupg2 \
     gnupg1 \
     git \
-    && docker-php-ext-install zip mysql pdo_mysql pdo_pgsql gd \
+    && docker-php-ext-install zip mysqli pdo_mysql pdo_pgsql gd \
     && rm -rf /var/lib/apt/lists/*
 
 #install phalcon
