@@ -16,6 +16,8 @@ RUN a2enmod rewrite \
 #dependensi
 RUN apt-get -y update \
     && apt-get install -y \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
     libzip-dev \
     unzip \
     libpng-dev \
@@ -23,7 +25,9 @@ RUN apt-get -y update \
     gnupg \
     gnupg2 \
     gnupg1 \
-    git \
+    git
+
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install zip mysqli pdo_mysql pdo_pgsql gd \
     && rm -rf /var/lib/apt/lists/*
 
