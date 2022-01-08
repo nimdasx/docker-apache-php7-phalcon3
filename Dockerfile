@@ -43,15 +43,15 @@ RUN rm -rf /usr/local/src/*
 RUN docker-php-ext-enable phalcon
 
 #sqlsrv
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
-    && apt-get update \
-    && ACCEPT_EULA=Y apt-get install -y \
-    msodbcsql17 \
-    mssql-tools \
-    unixodbc-dev \
-    libgssapi-krb5-2 \
-    && rm -rf /var/lib/apt/lists/* \
-    && pecl install sqlsrv pdo_sqlsrv \
-    && docker-php-ext-enable sqlsrv pdo_sqlsrv \
-    && sed -i 's/TLSv1.2/TLSv1.0/g' /etc/ssl/openssl.cnf
+#RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+#    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+#    && apt-get update \
+#    && ACCEPT_EULA=Y apt-get install -y \
+#    msodbcsql17 \
+#    mssql-tools \
+#    unixodbc-dev \
+#    libgssapi-krb5-2 \
+#    && rm -rf /var/lib/apt/lists/* \
+#    && pecl install sqlsrv pdo_sqlsrv \
+#    && docker-php-ext-enable sqlsrv pdo_sqlsrv \
+#    && sed -i 's/TLSv1.2/TLSv1.0/g' /etc/ssl/openssl.cnf
