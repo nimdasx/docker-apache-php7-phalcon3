@@ -42,6 +42,11 @@ RUN rm -rf /usr/local/src/*
 #enable phalcon
 RUN docker-php-ext-enable phalcon
 
+#redis
+RUN pecl install -o -f redis \
+&&  rm -rf /tmp/pear \
+&&  docker-php-ext-enable redis
+
 #sqlsrv
 #RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
 #    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
