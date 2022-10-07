@@ -13,6 +13,6 @@ docker-compose run --rm -w /var/www/html web php composer.phar update
 
 # build dan push ke github :
 ````
-docker build --tag ghcr.io/nimdasx/docker-apache-php7-phalcon3 .
-docker push ghcr.io/nimdasx/docker-apache-php7-phalcon3
+docker build --tag ghcr.io/nimdasx/docker-apache-php7-phalcon3:master .
+docker push ghcr.io/nimdasx/docker-apache-php7-phalcon3:master
 ````
