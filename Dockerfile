@@ -14,7 +14,10 @@ RUN a2enmod rewrite \
     && sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/-Indexes/+Indexes/' /etc/apache2/conf-enabled/docker-php.conf
 
 #dependensi
-RUN apt-get -y update \
+# Use archive.debian.org for old buster repos
+RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g' /etc/apt/sources.list && \
+    apt-get -y update -o Acquire::Check-Valid-Until=false \
     && apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -25,10 +28,12 @@ RUN apt-get -y update \
     gnupg \
     gnupg2 \
     gnupg1 \
-    git
+    git \
+    libbz2-dev \
+    libgmp-dev
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install zip mysqli pdo_mysql pdo_pgsql gd \
+    && docker-php-ext-install zip mysqli pdo_mysql pdo_pgsql gd bcmath \
     && rm -rf /var/lib/apt/lists/*
 
 #install phalcon
