@@ -16,4 +16,7 @@ docker buildx build --push --platform linux/amd64,linux/arm64 --tag nimdasx/apac
 ````
 docker build --tag nimdasx/apache-php7-phalcon3:sqlsrv .
 docker push nimdasx/apache-php7-phalcon3:sqlsrv
+
+#embuh
 ````
+
