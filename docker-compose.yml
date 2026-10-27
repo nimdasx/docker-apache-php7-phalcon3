@@ -3,7 +3,7 @@ services:
     elang:
         build : .
         container_name: sf-phalcon-3-container
-        image: nimdasx/sf-phalcon-3:latest
+        image: nimdasx/apache-php7-phalcon3:latest
         ports:
             - 80:80
         volumes:

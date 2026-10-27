@@ -50,7 +50,7 @@ jobs:
         run: |
           TAGS="ghcr.io/${{ github.repository }}:latest"
           if [ "${{ steps.check_dockerhub.outputs.has_dockerhub }}" = "true" ]; then
-            TAGS="${TAGS},nimdasx/sf-phalcon-3:latest"
+            TAGS="${TAGS},nimdasx/apache-php7-phalcon3:latest"
           fi
           echo "tags=${TAGS}" >> "$GITHUB_OUTPUT"
 
