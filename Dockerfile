@@ -19,6 +19,16 @@ RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /
     sed -i 's|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g' /etc/apt/sources.list && \
     apt-get -y update -o Acquire::Check-Valid-Until=false \
     && apt-get install -y \
+    patch \
+    apache2-dev \
+    libxml2-dev \
+    libssl-dev \
+    libcurl4-openssl-dev \
+    libsqlite3-dev \
+    libedit-dev \
+    zlib1g-dev \
+    libargon2-dev \
+    libsodium-dev \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libzip-dev \
@@ -31,6 +41,17 @@ RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /
     git \
     libbz2-dev \
     libgmp-dev
+
+# Recompile PHP 7.3 with CVE-2026-109618 and CVE-2026-109619 security patch
+COPY patches/php-7.3-CVE-2026-109618-109619.patch /tmp/
+RUN docker-php-source extract \
+    && cd /usr/src/php \
+    && patch -p1 < /tmp/php-7.3-CVE-2026-109618-109619.patch \
+    && ./configure $(php-config --configure-options) \
+    && make -j$(nproc) \
+    && make install \
+    && docker-php-source delete \
+    && rm -f /tmp/php-7.3-CVE-2026-109618-109619.patch
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && docker-php-ext-install zip mysqli pdo_mysql pdo_pgsql gd bcmath \
